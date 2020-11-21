@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
@@ -12,14 +12,20 @@ const UserSchema = new Schema(
       lowercase: true,
       unique: true,
     },
+    login: {
+      type: String,
+      required: [true, "can't be blank"],
+      lowercase: true,
+      unique: true,
+    },
     password: { type: String, required: [true, "can't be blank"], max: 1024 },
     phoneNumber: { type: Number },
     address: { type: String },
     isAdmin: { type: Boolean, default: false },
     isAssociation: { type: Boolean, default: false },
-    imageUrl: { type: String, default: '' },
+    imageUrl: { type: String, default: "" },
   },
-  { timestamps: true },
-)
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model("User", UserSchema);

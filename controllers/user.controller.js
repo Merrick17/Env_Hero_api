@@ -97,6 +97,7 @@ module.exports.register = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
+        login:req.body.login, 
         phoneNumber: req.body.phoneNumber,
         address: req.body.address,
         isAdmin: req.body.isAdmin,
@@ -122,7 +123,7 @@ module.exports.register = async (req, res) => {
 module.exports.loginUser = async (req, res) => {
   //Validating the data
   //Checking if email is valid
-  const user = await User.findOne({ email: req.body.email })
+  const user = await User.findOne({ login: req.body.login })
   if (!user) return res.send({ err: 'Wrong Email or Password' })
   //Validate password
   const validPass = await bcrypt.compare(req.body.password, user.password)
